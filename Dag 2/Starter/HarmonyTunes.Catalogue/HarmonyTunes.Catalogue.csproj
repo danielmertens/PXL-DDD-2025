@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Song\Domain\Events\**" />
+    <Compile Remove="Song\Domain\ValueObjects\**" />
+    <EmbeddedResource Remove="Song\Domain\Events\**" />
+    <EmbeddedResource Remove="Song\Domain\ValueObjects\**" />
+    <None Remove="Song\Domain\Events\**" />
+    <None Remove="Song\Domain\ValueObjects\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HarmonyTunes.Domain.Core\HarmonyTunes.Domain.Core.csproj" />
+  </ItemGroup>
+
+</Project>
