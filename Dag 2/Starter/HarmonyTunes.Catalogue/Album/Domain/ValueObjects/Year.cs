@@ -43,8 +43,14 @@ public class UserId{}
 public class Name{}
 public class Address{}
 
-public interface INameValidator{}
-public interface INameQueryService{}
+public interface INameValidator
+{
+    bool IsValid(Name name);
+}
+public interface INameQueryService
+{
+    bool Exists(Name name);
+}
 
 public class InvalidNameException : Exception
 {
@@ -86,6 +92,6 @@ public class User {
             throw new NameAlreadyExistsException("Name already exists");
         }
 
-        ...
+        // ...
     }
 }

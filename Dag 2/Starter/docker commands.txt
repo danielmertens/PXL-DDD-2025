@@ -1,0 +1,39 @@
+
+# Preload Docker images (run this first to download all required images)
+docker pull postgres:13
+docker pull dpage/pgadmin4:latest
+docker pull rabbitmq:3-management
+
+# Create a PostgreSQL database
+docker run --name harmonytunes-postgres `
+  -e POSTGRES_DB=harmonytunes_dev `
+  -e POSTGRES_USER=harmonytunes `
+  -e POSTGRES_PASSWORD=harmonytunes123 `
+  -p 5432:5432 `
+  -d postgres:13
+
+# ConnectionString: Host=localhost;Database=harmonytunes;Username=harmonytunes;Password=harmonytunes123
+
+
+
+# Add a pgAdmin container
+# Go to localhost:8080
+docker run --name harmonytunes-pgadmin `
+  -e PGADMIN_DEFAULT_EMAIL=admin@harmonytunes.com `
+  -e PGADMIN_DEFAULT_PASSWORD=admin123 `
+  -e PGADMIN_CONFIG_SERVER_MODE=False `
+  -p 8080:80 `
+  -d dpage/pgadmin4:latest
+
+
+
+# Create a RabbitMQ instance with management interface.
+# Go to localhost:15672
+# username: guest, password: guest
+docker run --name harmonytunes-rabbitmq `
+  -e RABBITMQ_DEFAULT_USER=harmonytunes `
+  -e RABBITMQ_DEFAULT_PASS=harmonytunes123 `
+  -p 5672:5672 `
+  -p 15672:15672 `
+  -d rabbitmq:3-management
+
